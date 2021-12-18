@@ -1,7 +1,7 @@
 import urllib.request
 import pandas as pd
 
-artist_name = 'beijuu'
+artist_name = 'Mona-danbooru'
 
 
 def url_to_jpg(url, file_path, number):

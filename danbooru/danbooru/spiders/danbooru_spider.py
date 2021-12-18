@@ -6,7 +6,7 @@ class DanbooruSpider(Spider):
     name = 'pics'
     base_url = 'https://danbooru.donmai.us'
     start_urls = [
-        'https://danbooru.donmai.us/posts?page=1&tags=beijuu+'
+        'https://danbooru.donmai.us/posts?tags=mona_%28genshin_impact%29+'
     ]
 
     def parse(self, response):
@@ -24,6 +24,8 @@ class DanbooruSpider(Spider):
             img_link = original_img_link
         else:
             img_link = response.css("section.image-container picture img::attr(src)").get()
+            if img_link is None:
+                img_link = response.css("section.image-container video::attr(src)").get()
 
         danbooru_item = DanbooruItem()
         danbooru_item['image_urls'] = [img_link]
